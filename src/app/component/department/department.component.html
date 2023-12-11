@@ -1,0 +1,22 @@
+<h1>Departments</h1>
+<app-list [data]="departments"
+          (submit)="afterAction()"
+          type="department"></app-list>
+
+<div>
+    <button (click)="openAddDepartmentModal()">Add new department</button>
+    <button (click)="openMoveDepartmentModal()">Move department</button>
+</div>
+
+<app-modal [isVisible]="showModalForMoveDepartment"
+           title="Move Department"
+           type="moveDepartment"
+           (close)="afterAction()">
+    <!-- Add form or content here -->
+</app-modal>
+<app-modal [isVisible]="showModalForNewDepartment"
+           title="Add Employee"
+           type="department"
+           (close)="afterAction()">
+    <!-- Add form or content here -->
+</app-modal>

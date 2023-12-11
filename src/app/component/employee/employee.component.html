@@ -1,0 +1,25 @@
+<h1>Employees</h1>
+<div>
+    <label for="departmentFilter">Filter by Department:</label>
+    <select id="departmentFilter"
+            (change)="filterByDepartment($event)">
+        <option value="">All Departments</option>
+        <option *ngFor="let dept of departments"
+                [value]="dept.name">{{ dept.name }}</option>
+    </select>
+</div>
+
+<app-list [data]="filteredEmployees"
+          (submit)="afterAction()"
+          type="employee"></app-list>
+
+<div>
+    <button (click)="openAddEmployeeModal()">Add new employee</button>
+</div>
+
+<app-modal [isVisible]="showModal"
+           title="Add Employee"
+           type="employee"
+           (close)="afterAction()">
+    <!-- Add form or content here -->
+</app-modal>

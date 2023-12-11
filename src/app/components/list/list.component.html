@@ -1,0 +1,72 @@
+<div class="mat-elevation-z8">
+    <table mat-table
+           [dataSource]="data"
+           class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell
+                *matHeaderCellDef> Name </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Email Column (only for employees) -->
+        <ng-container matColumnDef="email"
+                      *ngIf="type === 'employee'">
+            <th mat-header-cell
+                *matHeaderCellDef> Email </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Position Column (only for employees) -->
+        <ng-container matColumnDef="managerName"
+                      *ngIf="type === 'employee'">
+            <th mat-header-cell
+                *matHeaderCellDef> Manager </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.managerName ?? 'NA' }} </td>
+        </ng-container>
+
+        <!-- Position Column (only for employees) -->
+        <ng-container matColumnDef="departmentName"
+                      *ngIf="type === 'employee'">
+            <th mat-header-cell
+                *matHeaderCellDef> Department </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.departmentName}} </td>
+        </ng-container>
+
+        <!-- Description Column (only for departments) -->
+        <ng-container matColumnDef="description"
+                      *ngIf="type === 'department'">
+            <th mat-header-cell
+                *matHeaderCellDef> Description </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <!-- Headcount Column (only for departments) -->
+        <ng-container matColumnDef="parentDepartmentName"
+                      *ngIf="type === 'department'">
+            <th mat-header-cell
+                *matHeaderCellDef> Headcount </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element.parentDepartmentName ?? 'NA'}} </td>
+        </ng-container>
+
+        <tr mat-header-row
+            *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row
+            *matRowDef="let row; columns: displayedColumns;"
+            (dblclick)="displayEditModal(row)"></tr>
+    </table>
+</div>
+
+<app-edit-modal *ngIf="showEditModal"
+                [data]="selectedElement"
+                [type]="type"
+                (close)="showEditModal=false"
+                (submit)="submitEdit($event)">
+</app-edit-modal>

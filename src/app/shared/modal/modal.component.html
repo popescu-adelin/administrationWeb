@@ -1,0 +1,70 @@
+<div class="modal-backdrop"
+     *ngIf="isVisible">
+    <div class="modal-content">
+        <div class="modal">
+            <!-- Modal content -->
+            <div class="modal-header">
+                <h5 class="modal-title">{{type}}</h5>
+                <button type="button"
+                        class="close"
+                        (click)="onClose()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form *ngIf="type === 'employee'">
+                    <span for="">Name</span>
+                    <input type="text"
+                           name="name"
+                           [(ngModel)]="data.name">
+
+                    <span for="">Email</span>
+                    <input type="email"
+                           name="email"
+                           [(ngModel)]="data.email">
+
+                    <span for="">Manager</span>
+                    <input type="text"
+                           name="managerName"
+                           [(ngModel)]="data.managerName">
+
+                    <span for="">Department</span>
+                    <input type="text"
+                           name="departmentName"
+                           [(ngModel)]="data.departmentName">
+                </form>
+
+                <form *ngIf="type==='department'">
+                    <span for="">Name</span>
+                    <input type="text"
+                           name="name"
+                           [(ngModel)]="data.name">
+                    <span for="">Description</span>
+                    <input type="text"
+                           name="description"
+                           [(ngModel)]="data.description">
+                    <span for="">Former Department</span>
+                    <input type="text"
+                           name="parentDepartmentName"
+                           [(ngModel)]="data.parentDepartmentName">
+                </form>
+
+                <form *ngIf="type==='moveDepartment'">
+                    <span for="">Department</span>
+                    <input type="text"
+                           name="departmentName"
+                           [(ngModel)]="data.departmentName">
+                    <span for="">Target Department</span>
+                    <input type="text"
+                           name="targetDeparment"
+                           [(ngModel)]="data.targetDepartmentName">
+                </form>
+            </div>
+
+            <div class="
+                           modal-footer">
+                <button type="button"
+                        (click)="onSubmit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
